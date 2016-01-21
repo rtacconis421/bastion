@@ -1,0 +1,35 @@
+---
+driver:
+  name: ec2
+  region: eu-west-1
+  availability_zone: c
+  instance_type: t2.micro # AWS Free Tier
+  aws_ssh_key_id: <%= ENV['AWS_SSH_KEY_ID'] %>
+  associate_public_ip: true
+  subnet_id: subnet-ef42528a
+  tags:
+    created-by: 'test-kitchen'
+    launched-by: <%= ENV['USER'] %>
+    Name: 'test-kitchen bastion-cookbook <%= Time.now.strftime("%d/%m/%Y %H:%M") %>'
+
+busser:
+  sudo: true
+
+provisioner:
+  name: chef_solo
+  require_chef_omnibus: 12.5.1
+
+platforms:
+  - name: amazon-2015.09.1
+    run_list:
+      - recipe[bastion::default]
+    driver:
+      image_id: ami-bff32ccc
+    transport:
+      username: ec2-user
+      ssh_key: <%= File.join(ENV['HOME'], '.ssh', 'pk-riccardo.pem') %>
+
+suites:
+  - name: default
+    run_list:
+    attributes:
