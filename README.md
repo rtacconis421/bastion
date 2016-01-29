@@ -1,6 +1,6 @@
 # bastion-cookbook
 
-TODO: Enter the cookbook description here.
+This cookbook works only with Amazon Linux and it updates only security packages, OpenSSH client and server packages.
 
 ## Supported Platforms
 
