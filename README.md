@@ -4,7 +4,7 @@ This cookbook works only with Amazon Linux and it updates only security packages
 
 ## Supported Platforms
 
-TODO: List your supported platforms.
+Amazon Linux
 
 ## Attributes
 
